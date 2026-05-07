@@ -4,7 +4,7 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "build": "roxavn build",
-    "dev": "roxavn dev"
+    "dev": "roxavn stories"
   },
   "license": "MIT",
   "author": "roxavn",

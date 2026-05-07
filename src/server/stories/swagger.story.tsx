@@ -5,19 +5,17 @@ import {
   type MetaFunction,
   useLoaderData,
 } from 'react-router';
+import { schemaDefinitionApi } from '../../base/index.js';
 
 export async function loader() {
-  if (process.env.ALLOW_OPENAPI) {
-    const result = new Set<string>();
-    for (const m of ApiManager.apiRoutes) {
-      result.add(m.api.module.name);
-    }
-    return [...result].map((m) => ({
-      name: m,
-      url: './openapi/json?q=' + decodeURIComponent(m),
-    }));
+  const result = new Set<string>();
+  for (const m of ApiManager.apiRoutes) {
+    result.add(m.api.module.name);
   }
-  throw new Response(null, { status: 404, statusText: 'Not Found' });
+  return [...result].map((m) => ({
+    name: m,
+    url: schemaDefinitionApi.get.path + '?module=' + decodeURIComponent(m),
+  }));
 }
 
 export default function () {
@@ -34,6 +32,11 @@ export default function () {
       deepLinking: false,
       persistAuthorization: true,
       tagsSorter: 'alpha',
+      responseInterceptor: (response: any) => {
+        const resp = JSON.parse(response.text);
+        response.text = JSON.stringify(resp.data);
+        return response;
+      },
     });
   }, []);
 
