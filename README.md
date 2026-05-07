@@ -1,33 +1,28 @@
 # @roxavn/plugin-openapi
 
-## Flow
+A RoxaVN plugin that automatically generates OpenAPI documentation for all installed modules and provides an interactive Swagger UI for exploration.
 
-### Gated Access
-Documentation access is strictly controlled by the `ALLOW_OPENAPI` environment variable. If disabled, the documentation endpoints return a 404 response to ensure security in production environments.
+## Key Features
 
-### Dynamic Module Discovery
-The documentation index scans all registered `ApiManager.apiRoutes` to identify installed RoxaVN modules. It generates a navigation list pointing to specialized JSON specification endpoints for each discovered module.
+- **Dynamic Module Discovery**: Automatically identifies all installed RoxaVN modules by scanning registered API routes.
+- **On-the-fly Spec Generation**: Real-time generation of OpenAPI 3 specifications from internal `TSchema` definitions.
+- **Full API Metadata**: Supports request bodies, query parameters, responses, and security schemes (Bearer tokens).
+- **Interactive UI**: Integrated with Swagger UI for easy API exploration and testing.
+- **Security-First**: Documentation access can be gated to ensure security in production environments.
 
-### Interactive UI Rendering
-Integrated with `SwaggerUIBundle` to provide a standard, interactive interface for API exploration. It dynamically loads the necessary assets from a CDN and initializes the UI with the discovered module endpoints.
+## How it Works
 
-### On-the-fly Spec Generation
-The specialized `json` endpoint generates an OpenAPI 3.0.3 specification in real-time for any requested module. It translates internal `TSchema` definitions into OpenAPI-compliant objects, including request bodies, query parameters, and security schemes (Bearer tokens).
+1. **Gated Access**: Access to documentation endpoints is strictly controlled. By default, it is enabled in story mode.
+2. **Scanning**: The plugin scans `ApiManager.apiRoutes` to build a map of all available endpoints.
+3. **Translation**: It translates RoxaVN's internal type system into OpenAPI-compliant schema objects.
+4. **Rendering**: Swagger UI is initialized with the generated endpoints, allowing for direct interaction with the APIs.
 
-## Environment variables
+## Usage
+
+Open stories server
 
 ```
-ALLOW_OPENAPI = 1 // by default, the OpenAPI URL will be hidden.
+npx roxavn stories
 ```
 
-The plugin automatically generates OpenAPI documentation for all installed RoxaVN modules with swagger ui. It will create documentation at link
-
-```
-http://[DEV_SERVER]/__doc/openapi
-```
-
-Install
-
-```bash
-npm i -D @roxavn/plugin-openapi
-```
+Then go to document page of this plugin.
