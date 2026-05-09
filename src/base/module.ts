@@ -1,3 +1,7 @@
 import { BaseModule } from '@roxavn/core/base';
 
-export const baseModule = new BaseModule('@roxavn/plugin-openapi');
+import { staticFiles } from './static.files.js';
+
+export const baseModule = new BaseModule('@roxavn/plugin-openapi', {
+  staticFiles,
+});

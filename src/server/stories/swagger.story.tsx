@@ -1,11 +1,13 @@
 import { ApiManager } from '@roxavn/core/server';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import {
   type LinksFunction,
   type MetaFunction,
   useLoaderData,
 } from 'react-router';
+import { SwaggerUIBundle, SwaggerUIStandalonePreset } from 'swagger-ui-dist';
 import { schemaDefinitionApi } from '../../base/index.js';
+import { webModule } from '../../web/index.js';
 
 export async function loader() {
   const result = new Set<string>();
@@ -20,33 +22,29 @@ export async function loader() {
 
 export default function () {
   const urls = useLoaderData<typeof loader>();
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const w: any = window;
-    w.ui = w.SwaggerUIBundle({
-      urls,
-      dom_id: '#swagger-ui',
-      layout: 'StandaloneLayout',
-      presets: [w.SwaggerUIBundle.presets.apis, w.SwaggerUIStandalonePreset],
-      docExpansion: 'list',
-      deepLinking: false,
-      persistAuthorization: true,
-      tagsSorter: 'alpha',
-      responseInterceptor: (response: any) => {
-        const resp = JSON.parse(response.text);
-        response.text = JSON.stringify(resp.data);
-        return response;
-      },
-    });
-  }, []);
+    if (ref.current) {
+      SwaggerUIBundle({
+        urls,
+        domNode: ref.current,
+        layout: 'StandaloneLayout',
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        docExpansion: 'list',
+        deepLinking: false,
+        persistAuthorization: true,
+        tagsSorter: 'alpha',
+        responseInterceptor: (response) => {
+          const resp = JSON.parse(response.text);
+          response.text = JSON.stringify(resp.data);
+          return response;
+        },
+      });
+    }
+  }, [ref.current]);
 
-  return (
-    <div>
-      <div id="swagger-ui"></div>
-      <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-standalone-preset.js"></script>
-      <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
-    </div>
-  );
+  return <div ref={ref}></div>;
 }
 
 export const meta: MetaFunction = () => [{ title: 'OpenAPI Documentation' }];
@@ -55,7 +53,7 @@ export const links: LinksFunction = () => {
   return [
     {
       rel: 'stylesheet',
-      href: 'https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css',
+      href: webModule.resolveStaticPath('/swagger-ui.css'),
     },
   ];
 };
