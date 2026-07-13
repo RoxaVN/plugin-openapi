@@ -1,5 +1,14 @@
 # Changelog
 
+# [3.10.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.9.0...v3.10.0) (2026-07-13)
+
+
+### Features
+
+* intergrate OpenAPI to stories instead of dev server ([a6d9e5f](https://github.com/RoxaVN/plugin-openapi/commit/a6d9e5f47beda5054426c12a489875eadd1b27c1))
+* update typescript to v6 ([58a5f51](https://github.com/RoxaVN/plugin-openapi/commit/58a5f510aa830a345e5370f402be802bd732cb4c))
+* use swagger-ui from npm instead of cdn ([2ce32ec](https://github.com/RoxaVN/plugin-openapi/commit/2ce32eccc7517c8b7f08f2bdef7f4acdc9ee4fd5))
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## [3.9.0](https://github.com/RoxaVN/roxavn/compare/v3.8.0...v3.9.0) (2026-03-09)
