@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.11.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.10.0...v3.11.0) (2026-07-29)
+
+
+### Features
+
+* update react-router to v8 ([9091b88](https://github.com/RoxaVN/plugin-openapi/commit/9091b888dec6eb90e0398df896138e99b70c6064))
+
 # [3.10.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.9.0...v3.10.0) (2026-07-13)
 
 
