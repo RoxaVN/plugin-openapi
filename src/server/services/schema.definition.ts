@@ -33,7 +33,7 @@ const mapProperties = (name: string, schema: TSchema) => {
 @useApi(schemaDefinitionApi.get)
 export class GetSchemaDefinitionService extends BaseService {
   async handle(request: InferApiRequest<typeof schemaDefinitionApi.get>) {
-    if (process.env.ROXAVN_STORIES) {
+    if (import.meta.env.ROXAVN_STORIES) {
       const moduleInfo = moduleManager.modules.find(
         (m) => m.name === request.module
       );
