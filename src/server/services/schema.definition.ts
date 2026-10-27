@@ -1,7 +1,9 @@
 import {
+  getEnv,
   InferApiRequest,
   notFoundErrorFactory,
   TSchema,
+  Type,
 } from '@roxavn/core/base';
 import {
   ApiManager,
@@ -33,7 +35,7 @@ const mapProperties = (name: string, schema: TSchema) => {
 @useApi(schemaDefinitionApi.get)
 export class GetSchemaDefinitionService extends BaseService {
   async handle(request: InferApiRequest<typeof schemaDefinitionApi.get>) {
-    if (import.meta.env.ROXAVN_STORIES) {
+    if (getEnv('ROXAVN_STORIES', Type.Boolean())) {
       const moduleInfo = moduleManager.modules.find(
         (m) => m.name === request.module
       );
