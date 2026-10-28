@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.12.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.11.0...v3.12.0) (2026-10-28)
+
+
+### Features
+
+* add i18n module for translation types ([2682d37](https://github.com/RoxaVN/plugin-openapi/commit/2682d37f8100e74c6fc20ad22fbe2c11a141e914))
+
 # [3.11.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.10.0...v3.11.0) (2026-07-29)
 
 
