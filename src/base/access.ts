@@ -1,7 +1,7 @@
 import { accessManager, Type } from '@roxavn/core/base';
 import { baseModule } from './module.js';
 
-export const scopes = accessManager.makeScopes(baseModule, {
+export const resources = accessManager.makeResources(baseModule, {
   SchemaDefinition: {
     schema: Type.Object({
       openapi: Type.String(),
