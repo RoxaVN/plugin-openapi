@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.13.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.12.0...v3.13.0) (2026-11-13)
+
+
+### Features
+
+* refactor scope to resource terminology across the codebase ([7284c98](https://github.com/RoxaVN/plugin-openapi/commit/7284c98ac4b77132b4487674a41ee461d6f14c25))
+
 # [3.12.0](https://github.com/RoxaVN/plugin-openapi/compare/v3.11.0...v3.12.0) (2026-10-28)
 
 
